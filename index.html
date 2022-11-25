@@ -1,0 +1,85 @@
+<!doctype html>
+<html ln=eng>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NOVA</title>
+        <link rel="stylesheet" href="nova.css">
+    </head>
+    <body class="vansh">
+        <center><img src="images.jpg" alt="complaint_box" height="100" width="100"></center>
+        <h1 class="W"><u><b>LODGE</b></u> <u><b>YOUR</b></u> <u><b>COMPLAINT</b></u> <u><b>TO</b></u> <u><b>MINISTRY</b></u> <u><b>OF</b></u><u><b>HEALTH</b></u> <u><b>AND</b></u> <u><b>FAMILY</b></u> <u><b>WELFARE</b></u></h1>
+        <div class="container">
+            <form  name ="submit-to-google-sheet" action="action_page.php">
+          
+              <label for="fname"><b><u>FIRST</u> <u>NAME</u></b></label>
+              <input type="text" id="fname" name="First Name" placeholder="Your First Name...">
+          
+              <label for="lname"><b><u>LAST</u> <u>NAME</u></b></label>
+              <input type="text" id="lname" name="Last Name" placeholder="Your Last Name...">
+
+              <label for="idtype"><b><u>UNIQUE</u> <u>I'D</u> <u>TYPE</u></b></label>
+              <select id="idtype" name="I'd Type" >
+                <option  value ="Select*">  </option>
+                <option value="Aadhar Card">AADHAR CARD</option>
+                <option value="Pan Card">PAN CARD</option>
+                <option value="Driving Licence">DRIVING LICENCE</option>
+              </select>
+
+              <label for="uid"><b><u>UNIQUE</u> <u>I'D</u> <u>NUMBER</u></b></label>
+              <input type="text" id="uid" name="I'd Number" placeholder="1234 1234 1234">
+
+              <label for="cnumber"><b><u>CONTACT</u></b> <b><u>NUMBER</u></b></label>
+              <input type="text" id="cnumber" name="Contact Number" placeholder="+91_1234567890">
+
+              <label for="mid"><u><b>MAIL</b></u> <u><b>I'D</b></u></label>
+              <input type="text" id="mid" name="Mail I'd" placeholder="Ex:name123@gmail.com">
+
+              <label for="Hospital"><b><u>HOSPITAL</u></b></label>
+          <select id="Hospital" name="Hospital" >
+            <option>  </option>
+            <option>SHREE GANGA RAM HOSPITAL</option>
+            <option>INDRAPRASTHA APOLLO HOSPITAL</option>
+            <option>BLK-MAX SUPER SPECIALITY HOSPITAL</option>
+            <option>FORTIS HOSPITAL</option>
+            <option>PRIMUS SUPER SPECIALITY HOSPITAL</option>
+            <option>MOOLCHAND HOSPITAL</option>
+            <option>ALL INDIA INSTITUTE OF MEDICAL SCIENCE</option>
+            <option>OTHERS</option>
+          </select>
+      
+          <label for="Complaint"><b><u>COMPLAINT</u></b></label>
+          <textarea id="Complaint" name="Complaint" placeholder="Write your issues" style="height: 200px"></textarea>
+
+          <input type="submit" value="FILE COMPLAINT">
+
+            </form>
+            <span id="msg"></span>
+        </div>
+
+        <form name="submit-to-google-sheet">
+        
+        </form>
+
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx6IEubAGr0lz-jSeMXcdLJJH1GnrydgU-wV4cy5eC-dlJWW_VcpcTBcJssFLSs9buU/exec'
+            const form = document.forms['submit-to-google-sheet']
+            const msg= document.getElementById("msg")
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                  msg.innerHTML="COMPLAINT LODGED SUCCESSFULLY"
+                  setTimeout(function(){
+                    msg.innerHTML = ""
+                  },5000)
+                  form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script>
+
+    </body>
+</html>
