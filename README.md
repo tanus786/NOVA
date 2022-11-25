@@ -1,1 +1,3 @@
 # NOVA
+
+YOU CAN ACCESS THIS WEBSITE THROUGH THIS LINK: https://vanshgoel18.github.io/NOVA/
